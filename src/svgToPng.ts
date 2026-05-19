@@ -52,7 +52,7 @@ function sanitizeSvg(svgEl: SVGSVGElement, originalSvgEl: SVGSVGElement): void {
 	svgEl.removeAttribute("style");
 }
 
-function replaceForeignObjects(svgEl: SVGSVGElement, originalSvgEl: SVGSVGElement): void {
+export function replaceForeignObjects(svgEl: SVGSVGElement, originalSvgEl: SVGSVGElement): void {
 	const clonedFOs = Array.from(svgEl.querySelectorAll("foreignObject"));
 	const originalFOs = Array.from(originalSvgEl.querySelectorAll("foreignObject"));
 
@@ -110,7 +110,7 @@ function replaceForeignObjects(svgEl: SVGSVGElement, originalSvgEl: SVGSVGElemen
 	});
 }
 
-function extractTextLines(fo: Element): string[] {
+export function extractTextLines(fo: Element): string[] {
 	const lines: string[] = [];
 	let current = "";
 	const walk = (node: Node) => {
@@ -132,13 +132,13 @@ function extractTextLines(fo: Element): string[] {
 	return lines;
 }
 
-function stripRootCss(svgEl: SVGSVGElement): void {
+export function stripRootCss(svgEl: SVGSVGElement): void {
 	svgEl.querySelectorAll("style").forEach((style) => {
 		style.textContent = (style.textContent || "").replace(/:root\s*\{[^}]*\}/g, "");
 	});
 }
 
-function fixDimensions(svgEl: SVGSVGElement): void {
+export function fixDimensions(svgEl: SVGSVGElement): void {
 	const viewBox = svgEl.getAttribute("viewBox")?.split(/[\s,]+/).map(Number);
 	const isAbsolute = (v: string | null) =>
 		v != null && parseFloat(v) > 0 && /^\d+(\.\d+)?(px)?$/.test(v.trim());

@@ -7,12 +7,19 @@
 	"license": "MIT",
 	"scripts": {
 		"dev": "node esbuild.config.mjs",
-		"build": "node esbuild.config.mjs production"
+		"build": "node esbuild.config.mjs production",
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"test:coverage": "vitest run --coverage"
 	},
 	"devDependencies": {
-		"@types/node": "^16.11.6",
+		"@types/jsdom": "^28.0.3",
+		"@types/node": "^20.19.41",
+		"@vitest/coverage-v8": "^2.1.9",
 		"esbuild": "^0.18.20",
+		"jsdom": "^29.1.1",
 		"obsidian": "obsidianmd/obsidian-api",
-		"typescript": "^5.0.0"
+		"typescript": "^5.0.0",
+		"vitest": "^2.1.9"
 	}
 }
