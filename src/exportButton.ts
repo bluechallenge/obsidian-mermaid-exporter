@@ -36,9 +36,16 @@ function pollForSvg(container: HTMLElement, plugin: MermaidExporterPlugin): void
 }
 
 function getButtonParent(container: HTMLElement): HTMLElement {
+	// Prefer a wrapper *around* the diagram (Live Preview: `.cm-preview-code-block`
+	// / `.cm-embed-block`; Reading mode: `.el-pre`) over the diagram's own
+	// `.mermaid` element. Hosting the button bar as a sibling rather than a
+	// descendant matters: some themes/plugins style `.mermaid svg` broadly
+	// (e.g. to make embedded diagrams responsive) and would otherwise resize
+	// our icons too.
 	const codeBlock =
 		container.closest<HTMLElement>(".cm-preview-code-block") ??
-		container.closest<HTMLElement>(".cm-embed-block");
+		container.closest<HTMLElement>(".cm-embed-block") ??
+		container.closest<HTMLElement>(".el-pre");
 	if (codeBlock) return codeBlock;
 	return container;
 }

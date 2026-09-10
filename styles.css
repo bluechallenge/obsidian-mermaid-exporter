@@ -44,8 +44,13 @@
 	color: var(--text-normal);
 }
 
+/* !important: Obsidian's own `svg.svg-icon { width: var(--icon-size) }`
+   rule (added by every setIcon() call) wins this cascade in some
+   render contexts (e.g. Reading mode) regardless of selector
+   specificity — not specific to `.edit-block-button`, it applies to
+   any icon Obsidian's API creates. */
 .mermaid-export-btn svg {
-	width: 15px;
-	height: 15px;
+	width: 15px !important;
+	height: 15px !important;
 	pointer-events: none;
 }
