@@ -1,6 +1,23 @@
 .cm-preview-code-block.cm-lang-mermaid,
-.block-language-mermaid {
+.block-language-mermaid,
+.mermaid {
 	position: relative;
+}
+
+.mermaid-export-btn.edit-block-button {
+	position: absolute;
+	top: var(--size-2-2);
+	inset-inline-end: var(--size-2-2);
+	z-index: 3;
+	opacity: 0 !important;
+	pointer-events: none !important;
+	transition: opacity 0.1s ease-in-out;
+}
+
+.mermaid-export-hover-scope:hover .mermaid-export-btn.edit-block-button,
+.mermaid-export-hover-scope:focus-within .mermaid-export-btn.edit-block-button {
+	opacity: 1 !important;
+	pointer-events: auto !important;
 }
 
 .cm-embed-block .mermaid-export-btn.edit-block-button,
@@ -8,7 +25,7 @@
 	inset-inline-end: calc(var(--size-2-2) + 40px);
 }
 
-.mermaid-export-btn svg {
-	width: 16px;
-	height: 16px;
+.mermaid-export-btn.edit-block-button svg {
+	width: 16px !important;
+	height: 16px !important;
 }

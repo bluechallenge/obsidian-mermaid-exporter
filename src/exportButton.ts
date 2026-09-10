@@ -46,6 +46,11 @@ function createButton(container: HTMLElement, svg: SVGSVGElement, plugin: Mermai
 
 	if (parent.querySelector(".mermaid-export-btn")) return;
 
+	if (activeWindow.getComputedStyle(parent).position === "static") {
+		parent.style.position = "relative";
+	}
+	parent.classList.add("mermaid-export-hover-scope");
+
 	const btn = parent.createDiv({ cls: "edit-block-button mermaid-export-btn" });
 	btn.setAttribute("aria-label", "Export as PNG");
 	setIcon(btn, "download");
